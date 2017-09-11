@@ -170,7 +170,6 @@ typedef enum : NSUInteger {
     NSString* docsPath = [NSTemporaryDirectory()stringByStandardizingPath];
 
     NSError* err = nil;
-    int i = 1;
     NSString* filePath;
     CDVPluginResult* result = nil;
 
@@ -181,7 +180,7 @@ typedef enum : NSUInteger {
         }
 
         do {
-            filePath = [NSString stringWithFormat:@"%@/%@%03d.%@", docsPath, CDV_PHOTO_PREFIX, i++, @"jpg"];
+            filePath = [NSString stringWithFormat:@"%@/%@%@.%@", docsPath, CDV_PHOTO_PREFIX, [[NSUUID UUID] UUIDString], @"jpg"];
         } while ([fileMgr fileExistsAtPath:filePath]);
 
         NSData* data = nil;
